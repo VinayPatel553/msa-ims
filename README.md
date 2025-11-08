@@ -1,12 +1,14 @@
 # 📦 Inventory Management System (IMS)
 
-A modern, cloud-native **Microservices-based Inventory Management System** built with Spring Boot, React, and deployed on Kubernetes. This system provides comprehensive inventory management capabilities including product management, supplier tracking, stock monitoring, and order processing.
+A modern, cloud-native Microservices-based Inventory Management System (IMS) built with Spring Boot, React, and deployed on Kubernetes. Powered by Jenkins CI/CD for automated builds and deployments, and hosted on AWS EC2 for scalable, production-grade cloud infrastructure. This system delivers comprehensive inventory management with product management, supplier tracking, real-time stock monitoring, and automated order processing — all containerized, monitored, and highly available.
 
 ![Microservices Architecture](https://img.shields.io/badge/Architecture-Microservices-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-brightgreen)
 ![React](https://img.shields.io/badge/React-19.1.1-blue)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-orange)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red)
+![AWS](https://img.shields.io/badge/AWS-EC2-yellow)
 
 ---
 
@@ -22,47 +24,9 @@ A modern, cloud-native **Microservices-based Inventory Management System** built
 - ✅ **High Availability** - Multiple replicas for fault tolerance
 - ✅ **Containerized** - Fully containerized with Docker
 - ✅ **Kubernetes Ready** - Complete K8s manifests for production deployment
+- ✅ **CI/CD Pipeline** – Automated with Jenkins  
+- ✅ **Cloud Deployment** – Hosted on AWS EC2 
 
----
-
-## 🏗️ Architecture
-
-### System Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        Frontend (React)                       │
-│                    http://localhost:3001                      │
-└───────────────────────────┬─────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      API Gateway (8081)                      │
-│              Spring Cloud Gateway + Load Balancer            │
-└─────┬──────┬──────┬──────┬──────┬───────────────────────────┘
-      │      │      │      │      │
-      ▼      ▼      ▼      ▼      ▼
-┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
-│Product │ │Supplier│ │ Stock  │ │ Order  │ │ Eureka │
-│ (8082) │ │ (8083) │ │ (8084) │ │ (8085) │ │ (8761) │
-└───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘ └───┬────┘
-    │          │          │          │          │
-    └──────────┴──────────┴──────────┴──────────┘
-                             │
-                             ▼
-                    ┌─────────────────┐
-                    │   MySQL (3306)  │
-                    │  (Per Service)  │
-                    └─────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│              Monitoring Stack                               │
-│  ┌──────────────┐              ┌──────────────┐            │
-│  │  Prometheus  │──────────────▶│   Grafana   │            │
-│  │   (9090)     │              │   (3000)    │            │
-│  └──────────────┘              └──────────────┘            │
-└─────────────────────────────────────────────────────────────┘
-```
 
 ### Microservices
 
@@ -103,11 +67,11 @@ A modern, cloud-native **Microservices-based Inventory Management System** built
 - **Nginx** (Production Server)
 
 ### DevOps & Infrastructure
-- **Docker** (Containerization)
-- **Docker Compose** (Local Orchestration)
-- **Kubernetes** (Container Orchestration)
-- **Prometheus** (Metrics Collection)
-- **Grafana** (Monitoring & Visualization)
+- **Docker** & **Docker Compose** (Containerization)
+- **Jenkins** (CI/CD Automation)
+- **Kubernetes** (Orchestration)
+- **AWS EC2** (Cloud Deployment)
+- **Prometheus** & **Grafana** (Monitoring & Visualization)
 
 ---
 
@@ -125,6 +89,7 @@ cc-ec/
 │   ├── order/                       # Order Processing Service
 │   ├── prometheus/                   # Prometheus Configuration
 │   └── docker-compose.yml           # Docker Compose Configuration
+│   └── Jenkinsfile                   # CI/CD Pipeline Configuration
 │
 ├── Frontend/                         # Frontend Application
 │   └── ims/                         # React Application
@@ -152,6 +117,41 @@ cc-ec/
     ├── ingress.yaml                # Ingress Configuration
     └── deploy.ps1                   # Deployment Script
 ```
+---
+## 🖼️ Project Screenshots
+
+Here are some key visuals from the **Inventory Management System (IMS)** showcasing various components and deployments.
+
+### 🧩 Microservices & Docker Setup
+![msa_docker](https://github.com/user-attachments/assets/b9bfa03b-4165-485e-a31d-18e04b9719e6)
+
+---
+
+### ⚙️ Jenkins CI/CD Pipeline
+![msa_jenkins](https://github.com/user-attachments/assets/c47e26aa-b094-446f-8fc8-98f3728168cc)
+
+---
+
+### ☸️ Kubernetes Deployment
+![msa_k8s1](https://github.com/user-attachments/assets/871fe2fe-58bd-471d-a80c-2229e5dc32a7)
+![msa_k8s2](https://github.com/user-attachments/assets/573c86bd-0531-4b67-afc7-aa8da081ee22)
+
+---
+
+### 📊 Monitoring Dashboard
+<img width="1919" height="1020" alt="ec2_prometheus" src="https://github.com/user-attachments/assets/a61a02f7-9d7f-4123-bc06-4d7855d2505f" />
+<img width="1919" height="1013" alt="ec2_grafana" src="https://github.com/user-attachments/assets/2e9a63c9-1cba-4339-bca6-4c1ed65bd664" />
+
+---
+
+### 🧭 Service Discovery & Cloud Deployment
+<img width="1919" height="1006" alt="ec2_eureka" src="https://github.com/user-attachments/assets/ebee21fc-1e50-4fd9-965f-4df1ab70b15d" />
+<img width="1903" height="949" alt="msa_ec2" src="https://github.com/user-attachments/assets/5e192e0e-4715-4d11-a038-3d29747defad" />
+
+---
+
+### 💻 Frontend View
+![msa_frontend](https://github.com/user-attachments/assets/c0f476d9-a5ea-43e2-b369-7f54e04fc3c0)
 
 ---
 
@@ -308,28 +308,6 @@ DELETE /api/orders/{id}        # Delete order
 
 ---
 
-## 🌐 Service URLs
-
-### Development (Docker Compose)
-| Service | URL | Description |
-|---------|-----|-------------|
-| Frontend | http://localhost:3001 | React Application |
-| API Gateway | http://localhost:8081 | Main API Entry Point |
-| Eureka | http://localhost:8761 | Service Discovery Dashboard |
-| Prometheus | http://localhost:9090 | Metrics Collection |
-| Grafana | http://localhost:3000 | Monitoring Dashboards |
-
-### Kubernetes (via Port-Forwarding)
-| Service | Internal URL | External Access |
-|---------|--------------|------------------|
-| Frontend | `http://frontend.ims.svc.cluster.local:80` | Port-forward: 3001 |
-| API Gateway | `http://apigateway.ims.svc.cluster.local:8081` | Port-forward: 8081 |
-| Eureka | `http://eureka.ims.svc.cluster.local:8761` | Port-forward: 8761 |
-| Prometheus | `http://prometheus.ims.svc.cluster.local:9090` | Port-forward: 9090 |
-| Grafana | `http://grafana.ims.svc.cluster.local:3000` | Port-forward: 3000 |
-
----
-
 ## 🐳 Docker Images
 
 All images are available on Docker Hub:
@@ -347,97 +325,46 @@ docker pull vp553/msa-ims:prometheus
 docker pull vp553/msa-ims:grafana
 docker pull vp553/msa-ims:mysql
 ```
+## ⚙️ Jenkins CI/CD Pipeline
+
+The project uses **Jenkins** to automate the build and deployment process for backend microservices.
+
+### 🧩 Pipeline Highlights
+- Triggered automatically on code changes (`Build Now`).  
+- Builds all microservices using **Maven**.  
+- Builds **Docker images** for each service.  
+- Tags and pushes updated images to **Docker Hub**.  
+- Cleans up local images to save space.  
+
+📄 The **Jenkinsfile** (located in `Backend/`) defines stages:
+```
+Checkout → Build → Docker Build → Push to DockerHub → Cleanup
+```
+
+This ensures a fully automated CI/CD workflow from code commit to image deployment.
 
 ---
 
-## 🔍 Monitoring & Observability
+## ☁️ AWS EC2 Deployment
 
-### Prometheus Metrics
-- All Spring Boot services expose metrics at `/actuator/prometheus`
-- Prometheus scrapes metrics every 15 seconds
-- Access Prometheus UI: http://localhost:9090
+All services were deployed on an **AWS EC2 instance (Amazon Linux 2023)** for cloud hosting and testing.
 
-### Grafana Dashboards
-- Default credentials: `admin/admin`
-- Access Grafana UI: http://localhost:3000
-- Configure Prometheus as data source: `http://prometheus.ims.svc.cluster.local:9090`
+### Steps:
+1. Provision EC2 instance (t2.medium or higher).  
+2. Install **Docker** and **Docker Compose**.  
+3. Pull all images from **DockerHub**.  
+4. Deploy using `docker-compose up -d`.  
+5. Access services using EC2 public IP.  
 
-### Health Checks
-- All services expose health endpoints at `/actuator/health`
-- Kubernetes liveness and readiness probes configured
-
----
-
-## 🧪 Testing
-
-### Backend Testing
-```bash
-# Run tests for a specific service
-cd Backend/product
-mvn test
-
-# Run all tests
-cd Backend
-mvn test
+### Example:
+```
+Frontend:   http://<ec2-public-ip>:3001
+Eureka:     http://<ec2-public-ip>:8761
+API Gateway: http://<ec2-public-ip>:8081
+Grafana:    http://<ec2-public-ip>:3000
 ```
 
-### Frontend Testing
-```bash
-cd Frontend/ims
-npm test
-```
-
-### API Testing
-```bash
-# Test Product API
-curl http://localhost:8081/api/products
-
-# Create a product
-curl -X POST http://localhost:8081/api/products \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Test Product","category":"Electronics","price":99.99,"description":"Test description"}'
-```
-
----
-
-## 🛠️ Development
-
-### Running Services Locally
-
-1. **Start MySQL**
-   ```bash
-   docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8
-   ```
-
-2. **Start Eureka**
-   ```bash
-   cd Backend/eureka
-   mvn spring-boot:run
-   ```
-
-3. **Start Microservices** (in separate terminals)
-   ```bash
-   cd Backend/product
-   mvn spring-boot:run
-   ```
-
-4. **Start Frontend**
-   ```bash
-   cd Frontend/ims
-   npm start
-   ```
-
-### Building Docker Images
-
-```bash
-# Build individual service
-cd Backend/product
-docker build -t product-service:latest .
-
-# Build frontend
-cd Frontend/ims
-docker build -t ims-frontend:latest .
-```
+This provides full microservices deployment on a **cloud-hosted environment** with **Prometheus-Grafana monitoring** and **Eureka registry** integration.
 
 ---
 
@@ -453,82 +380,6 @@ Each microservice has its own database:
 Tables are auto-created by Hibernate on first startup.
 
 ---
-
-## 🔐 Configuration
-
-### Environment Variables
-
-Key environment variables for services:
-
-- `SPRING_DATASOURCE_URL` - Database connection URL
-- `EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE` - Eureka server URL
-- `SERVER_PORT` - Service port
-- `SPRING_APPLICATION_NAME` - Service name
-
-### Application Properties
-
-Each service has its own `application.properties` file with:
-- Database configuration
-- Eureka client configuration
-- Actuator endpoints configuration
-- Prometheus metrics configuration
-
----
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-**Services not starting:**
-```bash
-# Check logs
-docker-compose logs <service-name>
-# Or for Kubernetes
-kubectl logs <pod-name> -n ims
-```
-
-**MySQL connection errors:**
-- Wait 30-60 seconds for MySQL to initialize
-- Verify MySQL is running: `docker ps | grep mysql`
-
-**Services not registering with Eureka:**
-- Check Eureka URL in application.properties
-- Verify Eureka is accessible: http://localhost:8761
-
-**Port conflicts:**
-- Change ports in `docker-compose.yml` or Kubernetes manifests
-- Check if ports are in use: `netstat -an | grep <port>`
-
----
-
-## 📝 API Documentation
-
-### Example API Calls
-
-**Create Product:**
-```bash
-curl -X POST http://localhost:8081/api/products \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Laptop",
-    "category": "Electronics",
-    "price": 999.99,
-    "description": "High-performance laptop"
-  }'
-```
-
-**Place Order:**
-```bash
-curl -X POST http://localhost:8081/api/orders \
-  -H "Content-Type: application/json" \
-  -d '{
-    "productId": 1,
-    "quantity": 5
-  }'
-```
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -538,62 +389,6 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 👤 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-
----
-
-## 🙏 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- React team for the amazing frontend library
-- Kubernetes community for container orchestration
-- All open-source contributors
-
----
-
-## 📚 Additional Resources
-
-- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [React Documentation](https://react.dev/)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [Docker Documentation](https://docs.docker.com/)
-- [Microservices Patterns](https://microservices.io/patterns/)
-
----
-
-## 📈 Project Status
-
-✅ **Completed Features:**
-- Product Management
-- Supplier Management
-- Stock Management
-- Order Processing
-- Service Discovery
-- API Gateway
-- Monitoring & Metrics
-- Docker Containerization
-- Kubernetes Deployment
-
-🚧 **Future Enhancements:**
-- Authentication & Authorization
-- API Rate Limiting
-- Circuit Breaker Pattern
-- Distributed Tracing
-- Automated Testing
-- CI/CD Pipeline
 
 ---
 
